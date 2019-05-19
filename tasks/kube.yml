@@ -1,0 +1,9 @@
+---
+
+- name: Download template for chart {{ chart }}
+  get_url:
+    url: {{ values }}
+    dest: /tmp/values.yml
+
+- name: Helm install chart {{ chart }}
+  command: helm install --name {{ name }} -f /tmp/values.yml {{ chart }}

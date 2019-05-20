@@ -2,4 +2,4 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - ansible-role-metricbeat
+    - cloud-pg.ansible-role-helm

@@ -2,7 +2,7 @@
 
 - name: Download template for chart {{ chart }}
   get_url:
-    url: {{ values }}
+    url: "{{ values }}"
     dest: /tmp/values.yml
 
 - name: Helm install chart {{ chart }}

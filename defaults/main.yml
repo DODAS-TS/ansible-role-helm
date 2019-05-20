@@ -1,4 +1,4 @@
 ---
 name: my-deployment
 chart: my-chart
-value: http://dummy
+values: http://dummy

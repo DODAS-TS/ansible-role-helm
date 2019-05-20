@@ -5,8 +5,11 @@
     url: "{{ values }}"
     dest: /tmp/values.yml
 
-- name: Helm install repo
-  command: helm repo add cloudpg https://cloud-pg.github.io/charts/
+- name: Helm install cloudpg repo
+  command: helm repo add cloudpg https://cloud-pg.github.io/charts/ &&\
+
+- name: Helm install other repos
+  command: helm repo add jupyterhub https://jupyterhub.github.io/helm-chart/ && helm repo update
 
 - name: Helm install chart {{ chart }}
   command: helm install --name {{ name }} -f /tmp/values.yml {{ chart }}

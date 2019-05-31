@@ -6,10 +6,13 @@
     dest: /tmp/values.yml
 
 - name: Helm install cloudpg repo
+  command: helm repo add cloudpg https://cloud-pg.github.io/charts/
+
+- name: Helm install cloudpg repo
   command: helm repo add cloudpg https://cloud-pg.github.io/charts/ 
 
-- name: Helm install other repos
-  command: helm repo add jupyterhub https://jupyterhub.github.io/helm-chart/
+- name: Helm install cache repos
+  command: helm repo add cache https://cloud-pg.github.io/CachingOnDemand/
 
 - name: Helm install chart {{ chart }}
   command: helm install --name {{ name }} -f /tmp/values.yml {{ chart }}

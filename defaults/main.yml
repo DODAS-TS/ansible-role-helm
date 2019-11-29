@@ -1,4 +1,9 @@
 ---
 name: my-deployment
 chart: my-chart
-values: http://dummy
+
+values_file: |
+  test_value: dummy
+
+repos:
+#  - { name: testuser1, url: "http://....." }

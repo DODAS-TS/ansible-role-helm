@@ -1,18 +1,19 @@
 ---
 
-- name: Download template for chart {{ chart }} from {{ values }}
-  get_url:
-    url: "{{ values }}"
-    dest: /tmp/{{ name }}.yml
-
 - name: Helm install cloudpg repo
-  command: helm repo add cloudpg https://cloud-pg.github.io/charts/
+  command: helm repo add {{ item.name }} {{ item.url }}
+  with_items: "{{ repos }}"
 
-- name: Helm install cloudpg repo
-  command: helm repo add cloudpg https://cloud-pg.github.io/charts/ 
+# - name: Helm install cloudpg repo
+#   command: helm repo add cloudpg https://cloud-pg.github.io/charts/ 
 
-- name: Helm install cache repos
-  command: helm repo add cache https://cloud-pg.github.io/CachingOnDemand/
+# - name: Helm install cache repos
+#   command: helm repo add cache https://cloud-pg.github.io/CachingOnDemand/
+
+- name: write values
+  file:
+    content: {{ values_file }}
+    dest: /tmp/values_{{ name }}.yml
 
 - name: Helm install chart {{ chart }}
-  command: helm install --name {{ name }} -f /tmp/{{ name }}.yml {{ chart }}
+  command: helm install --name {{ name }} -f /tmp/values_{{ name }}.yml {{ chart }}

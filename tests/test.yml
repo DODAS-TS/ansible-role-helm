@@ -2,4 +2,9 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - cloud-pg.ansible-role-helm
+    - role: ansible-role-helm
+      name: my-deployment
+      chart: my-chart
+      values_file: |
+        test_value: dummy
+      repos:

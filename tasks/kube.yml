@@ -12,7 +12,7 @@
 
 - name: write values
   file:
-    content: {{ values_file }}
+    content: "{{ values_file }}"
     dest: /tmp/values_{{ name }}.yml
 
 - name: Helm install chart {{ chart }}

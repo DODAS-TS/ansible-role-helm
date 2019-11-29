@@ -1,5 +1,4 @@
 ---
-
 - name: Helm install cloudpg repo
   command: helm repo add {{ item.name }} {{ item.url }}
   with_items: "{{ repos }}"
@@ -11,7 +10,7 @@
 #   command: helm repo add cache https://cloud-pg.github.io/CachingOnDemand/
 
 - name: write values
-  file:
+  copy:
     content: "{{ values_file }}"
     dest: /tmp/values_{{ name }}.yml
 

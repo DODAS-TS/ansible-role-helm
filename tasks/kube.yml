@@ -16,24 +16,5 @@
     block: | 
       {{ values_file }}
 
-- name: write values
-  blockinfile:
-    dest:  /tmp/values_{{ name }}-test.yml
-    create: yes
-    block: >
-      {{ values_file }}
-
-- name: write values
-  blockinfile:
-    dest:  /tmp/values_{{ name }}-test2.yml
-    create: yes
-    block: "{{ values_file }}"
-
-- name: "{{ values_file }}"
-  blockinfile:
-    dest:  /tmp/values_{{ name }}-test3.yml
-    create: yes
-    block: '{{ values_file }}'
-
 - name: Helm install chart {{ chart }}
   command: "helm install --name {{ name }} -f /tmp/values_{{ name }}.yml {{ chart }}"

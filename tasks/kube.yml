@@ -31,7 +31,7 @@
 
 - name: "{{ values_file }}"
   blockinfile:
-    dest:  /tmp/values_{{ name }}-test2.yml
+    dest:  /tmp/values_{{ name }}-test3.yml
     create: yes
     block: '{{ values_file }}'
 

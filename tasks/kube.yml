@@ -12,6 +12,7 @@
 - name: write values
   blockinfile:
     dest:  /tmp/values_{{ name }}.yml
+    create: yes
     block: |
       "{{ values_file.split }}"
 

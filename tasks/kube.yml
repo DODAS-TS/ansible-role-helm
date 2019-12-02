@@ -10,12 +10,10 @@
 #   command: helm repo add cache https://cloud-pg.github.io/CachingOnDemand/
 
 - name: write values
-  lineinfile:
-    dest:  /tmp/values_{{ name }}.yml
-    create: yes
-    line: "{{ item }}"
-  with_items: 
-    - "{{ values_file.split('\n') }}"
+  blockinfile:
+    path:  /tmp/values_{{ name }}.yml
+    block: |
+      "{{ values_file.split }}"
 
 - name: Helm install chart {{ chart }}
   command: "helm install --name {{ name }} -f /tmp/values_{{ name }}.yml {{ chart }}"

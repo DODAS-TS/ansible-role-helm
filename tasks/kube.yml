@@ -13,8 +13,8 @@
   blockinfile:
     dest:  /tmp/values_{{ name }}.yml
     create: yes
-    block: |
-      "{{ values_file }}"
+    block: >
+      {{ values_file }}
 
 - name: Helm install chart {{ chart }}
   command: "helm install --name {{ name }} -f /tmp/values_{{ name }}.yml {{ chart }}"

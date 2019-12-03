@@ -5,6 +5,5 @@
     - role: ansible-role-helm
       name: my-deployment
       chart: my-chart
-      values_file: |
-        test_value: dummy
+      values_file: https://gist.githubusercontent.com/dciangot/58ebea45239f8fd4134d292c2267da53/raw/416871a3b1c343eed5e7d86e2c7364a24ef34c05/spark_demo.yaml
       repos:

@@ -3,15 +3,10 @@
   command: helm repo add {{ item.name }} {{ item.url }}
   with_items: "{{ repos }}"
 
-# - name: Helm install cloudpg repo
-#   command: helm repo add cloudpg https://cloud-pg.github.io/charts/ 
-
-# - name: Helm install cache repos
-#   command: helm repo add cache https://cloud-pg.github.io/CachingOnDemand/
-
 - name: write values
-  get_url:
-    url: "{{ values_file }}"
+  copy:
+    content: |
+      {{ values_file }}
     dest:  /tmp/values_{{ name }}-template.yml
 
 - name: compile values

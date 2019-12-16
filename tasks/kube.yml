@@ -6,7 +6,7 @@
 - name: write values "{{ values_file }}"
   copy:
     content: |
-      "{{ values_file }}"
+      {{ values_file }}
     dest:  /tmp/values_{{ name }}-template.txt
 
 - name: compile values

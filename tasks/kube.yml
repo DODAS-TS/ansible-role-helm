@@ -7,11 +7,11 @@
   copy:
     content: |
       "{{ values_file }}"
-    dest:  /tmp/values_{{ name }}-template.yml
+    dest:  /tmp/values_{{ name }}-template.txt
 
 - name: compile values
   template:
-    src:  /tmp/values_{{ name }}-template.yml
+    src:  /tmp/values_{{ name }}-template.txt
     dest: /tmp/values_{{ name }}.yml
 
 - name: Helm install chart {{ chart }}

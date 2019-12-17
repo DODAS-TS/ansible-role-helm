@@ -3,7 +3,7 @@
   command: helm repo add {{ item.name }} {{ item.url }}
   with_items: "{{ repos }}"
 
-- name: write values "{{ values_file }}"
+- name: write values template
   copy:
     content: |
       {{ values_file }}

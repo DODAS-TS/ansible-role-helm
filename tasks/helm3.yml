@@ -23,10 +23,10 @@
   when: ( values_url is defined ) and ( values_file is undefined )
 
 - name: Helm install chart {{ chart }}
-  command: "helm install --namespace {{ namespace }} --name {{ name }} -f /tmp/values_{{ name }}.yml {{ chart }}"
+  command: "helm --kubeconfig {{ kubeconfig_path }} install {{ name }} -f /tmp/values_{{ name }}.yml {{ chart }} {{ inline_options }}"
   when: ( values_url is defined ) or ( values_file is defined )
 
 - name: Helm install chart {{ chart }}
-  command: "helm install --namespace {{ namespace }} --name {{ name }}"
+  command: "helm --kubeconfig {{ kubeconfig_path }} install {{ name }} {{ chart }} {{ inline_options }}"
   when: ( values_url is undefined ) and ( values_file is undefined )
 

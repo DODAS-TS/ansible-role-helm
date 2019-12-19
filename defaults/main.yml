@@ -1,5 +1,6 @@
 ---
-namespace: default
+kubeconfig_path: /var/lib/rancher/k3s/server/cred/admin.kubeconfig
+inline_options: ""
 name: my-deployment
 chart: my-chart
 

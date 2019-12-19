@@ -8,11 +8,25 @@
     content: |
       {{ values_file }}
     dest:  /tmp/values_{{ name }}-template.txt
+  when: ( values_file is defined ) and ( values_url is undefined )
 
 - name: compile values
   template:
     src:  /tmp/values_{{ name }}-template.txt
     dest: /tmp/values_{{ name }}.yml
+  when: ( values_file is defined ) and ( values_url is undefined )
+
+- name: get values from url
+  get_url:
+      url: "{{ values_url }}"
+      dest: "/tmp/values_{{ name }}.yml"
+  when: ( values_url is defined ) and ( values_file is undefined )
 
 - name: Helm install chart {{ chart }}
-  command: "helm install --name {{ name }} -f /tmp/values_{{ name }}.yml {{ chart }}"
+  command: "helm install --namespace {{ namespace }} --name {{ name }} -f /tmp/values_{{ name }}.yml {{ chart }}"
+  when: ( values_url is defined ) or ( values_file is defined )
+
+- name: Helm install chart {{ chart }}
+  command: "helm install --namespace {{ namespace }} --name {{ name }}"
+  when: ( values_url is undefined ) and ( values_file is undefined )
+

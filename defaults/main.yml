@@ -1,9 +1,13 @@
 ---
+namespace: default
 name: my-deployment
 chart: my-chart
 
-values_file: |
-  test_value: dummy
+values_file:
+# |
+#  test_value: dummy
+
+values_url:
 
 repos:
 #  - { name: testuser1, url: "http://....." }

@@ -8,25 +8,25 @@
     content: |
       {{ values_file }}
     dest:  /tmp/values_{{ name }}-template.txt
-  when: ( values_file is defined ) and ( values_url is undefined )
+  when: ( values_file != "" ) and ( values_url == "" )
 
 - name: compile values
   template:
     src:  /tmp/values_{{ name }}-template.txt
     dest: /tmp/values_{{ name }}.yml
-  when: ( values_file is defined ) and ( values_url is undefined )
+  when: ( values_file != "" ) and ( values_url == "" )
 
 - name: get values from url
   get_url:
       url: "{{ values_url }}"
       dest: "/tmp/values_{{ name }}.yml"
-  when: ( values_url is defined ) and ( values_file is undefined )
+  when: ( values_url != "" ) and ( values_file == "" )
 
 - name: Helm install chart {{ chart }}
   command: "helm --kubeconfig {{ kubeconfig_path }} install {{ name }} -f /tmp/values_{{ name }}.yml {{ chart }} {{ inline_options }}"
-  when: ( values_url is defined ) or ( values_file is defined )
+  when: ( values_url != "" ) or ( values_file == "" )
 
 - name: Helm install chart {{ chart }}
   command: "helm --kubeconfig {{ kubeconfig_path }} install {{ name }} {{ chart }} {{ inline_options }}"
-  when: ( values_url is undefined ) and ( values_file is undefined )
+  when: ( values_url == "" ) and ( values_file == "" )
 

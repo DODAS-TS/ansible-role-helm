@@ -4,6 +4,8 @@ inline_options: ""
 name: my-deployment
 chart: my-chart
 
+helm_version: v2
+
 values_file:
 # |
 #  test_value: dummy

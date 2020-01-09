@@ -13,10 +13,10 @@
   delegate_to: localhost
   when: ( values_file != "" ) and ( values_url == "" )
 
-- name: Fetch template
-  fetch:
-    src: /tmp/values_{{ name }}-template.yml
-    dest: /etc/values_{{ name }}-template.yml
+#- name: Fetch template
+#  fetch:
+#    src: /etc/values_{{ name }}-template.yml
+#    dest: /etc/values_{{ name }}-template.yml
 
 - name: compile values
   template:

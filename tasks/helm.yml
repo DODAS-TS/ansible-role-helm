@@ -1,21 +1,22 @@
 ---
-- name: Helm install cloudpg repo
-  command: helm repo add {{ item.name }} {{ item.url }}
-  with_items: "{{ repos }}"
-
 - name: write values template
   copy:
     content: |
       {{ values_file }}
     dest: /tmp/values_{{ name }}-template.yml
-    mode: 0777
+    owner: root
+    group: root
+    remote_src: true
   when: ( values_file != "" ) and ( values_url == "" )
+
+- name: Helm install cloudpg repo
+  command: helm repo add {{ item.name }} {{ item.url }}
+  with_items: "{{ repos }}"
 
 - name: compile values
   template:
     src: /tmp/values_{{ name }}-template.yml
     dest: /tmp/values_{{ name }}.yml
-    remote_src: true
   when: ( values_file != "" ) and ( values_url == "" )
 
 - name: get values from url

@@ -10,6 +10,7 @@
     dest: /etc/values_{{ name }}-template.yml
     owner: root
     group: root
+  delegate_to: localhost
   when: ( values_file != "" ) and ( values_url == "" )
 
 - name: Fetch template

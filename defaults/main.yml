@@ -14,7 +14,3 @@ values_url:
 
 repos:
 #  - { name: testuser1, url: "http://....." }
-
-externalIP: ""
-
-externalParams: []

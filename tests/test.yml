@@ -11,7 +11,7 @@
 
         externalIP:
           enabled: true
-          ip: {{ externalIP }}
+          ip: {{ externalParams[1] }}
 
         Master:
           Name: master
@@ -29,7 +29,6 @@
           Jupyter:
             NodePort: 30888
       repos:
-      externalIP: 10.10.10.10
       externalParams:
       - 10.10.10.10
-      - 10.10.10.10
+      - 10.10.10.11

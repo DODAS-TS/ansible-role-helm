@@ -30,3 +30,6 @@
             NodePort: 30888
       repos:
       externalIP: 10.10.10.10
+      externalParams:
+      - 10.10.10.10
+      - 10.10.10.10

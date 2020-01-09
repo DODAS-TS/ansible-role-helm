@@ -22,9 +22,9 @@
   template:
     src: values_{{ name }}-template.yml
     dest: /tmp/values_{{ name }}.yml
-    remote_src: yes
-    mode: preserve 
-  become: true
+    #remote_src: yes
+    #mode: preserve 
+  #become: true
   when: ( values_file != "" ) and ( values_url == "" )
 
 - name: get values from url

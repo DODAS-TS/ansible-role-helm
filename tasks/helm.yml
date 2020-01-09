@@ -7,7 +7,7 @@
   copy:
     content: |
       {{ values_file }}
-    dest: /tmp/values_{{ name }}-template.yml
+    dest: /etc/values_{{ name }}-template.yml
     owner: root
     group: root
   when: ( values_file != "" ) and ( values_url == "" )
@@ -15,11 +15,11 @@
 - name: Fetch template
   fetch:
     src: /tmp/values_{{ name }}-template.yml
-    dest: values_{{ name }}-template.yml
+    dest: /etc/values_{{ name }}-template.yml
 
 - name: compile values
   template:
-    src: values_{{ name }}-template.yml
+    src: /etc/values_{{ name }}-template.yml
     dest: /tmp/values_{{ name }}.yml
     remote_src: yes
     mode: preserve 

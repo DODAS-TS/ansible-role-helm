@@ -7,15 +7,15 @@
   copy:
     content: |
       {{ values_file }}
-    dest:  /tmp/values_{{ name }}-template.txt
+    dest: /tmp/values_{{ name }}-template.txt
     mode: 0777
   when: ( values_file != "" ) and ( values_url == "" )
 
 - name: compile values
   template:
-    src:  /tmp/values_{{ name }}-template.txt
+    src: /tmp/values_{{ name }}-template.txt
     dest: /tmp/values_{{ name }}.yml
-    remote_src: yes
+    #remote_src: true
   when: ( values_file != "" ) and ( values_url == "" )
 
 - name: get values from url

@@ -7,7 +7,7 @@
   copy:
     content: |
       {{ values_file }}
-    dest: /etc/values_{{ name }}-template.yml
+    dest: values_{{ name }}-template.yml
     owner: root
     group: root
   delegate_to: localhost
@@ -20,7 +20,7 @@
 
 - name: compile values
   template:
-    src: /etc/values_{{ name }}-template.yml
+    src: values_{{ name }}-template.yml
     dest: /tmp/values_{{ name }}.yml
     remote_src: yes
     mode: preserve 

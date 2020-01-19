@@ -1,4 +1,10 @@
 ---
+- name: 
+  shell: kubectl label node {{ item }}
+  #vnode-2.localdomain condor=schedd
+  with_items: "{{ labels }}"
+  when: labels is defined
+
 - name: Helm install cloudpg repo
   command: helm repo add {{ item.name }} {{ item.url }}
   with_items: "{{ repos }}"

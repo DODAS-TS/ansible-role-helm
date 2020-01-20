@@ -1,5 +1,5 @@
 ---
-- name: 
+- name: install label node {{ item }} 
   shell: kubectl label node {{ item }}
   #vnode-2.localdomain condor=schedd
   with_items: "{{ labels }}"

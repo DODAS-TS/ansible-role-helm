@@ -1,6 +1,6 @@
 ---
-- name: install label node {{ item }} 
-  shell: kubectl label node {{ item }}
+- name: install label node
+  shell: "kubectl label --overwrite node {{ item }}"
   #vnode-2.localdomain condor=schedd
   with_items: "{{ labels }}"
   when: labels is defined

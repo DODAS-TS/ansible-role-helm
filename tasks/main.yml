@@ -1,2 +1,2 @@
 ---
-- include: kube.yml
+- include: helm.yml

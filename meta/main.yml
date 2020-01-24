@@ -12,7 +12,7 @@ galaxy_info:
     - name: Ubuntu
       versions:
       - trusty
-    galaxy_tags:
-      - helm
+  galaxy_tags:
+    - helm
 
 dependencies: []

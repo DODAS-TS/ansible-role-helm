@@ -1,5 +1,5 @@
 ---
-- name: Helm install cloudpg repo
+- name: Helm install repos
   command: helm repo add {{ item.name }} {{ item.url }}
   with_items: "{{ repos }}"
 
@@ -24,6 +24,10 @@
       url: "{{ values_url }}"
       dest: "/tmp/values_{{ name }}.yml"
   when: ( values_url != "" ) and ( values_file == "" )
+
+- name: Remove deployment if already exists
+  command: "helm --kubeconfig {{ kubeconfig_path }} delete {{ name }}"
+  ignore_errors: yes
 
 - name: Helm3 install chart {{ chart }}
   command: "helm --kubeconfig {{ kubeconfig_path }} install {{ name }} -f /tmp/values_{{ name }}.yml {{ chart }} {{ inline_options }}"

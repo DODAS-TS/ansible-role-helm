@@ -4,6 +4,8 @@ inline_options: ""
 name: my-deployment
 chart: my-chart
 
+timeout: 900
+
 helm_version: v2
 
 values_file:

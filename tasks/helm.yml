@@ -1,7 +1,7 @@
 ---
 - name: Helm install stable repo
   command: helm repo add stable https://kubernetes-charts.storage.googleapis.com/
-  when: (( values_url == "" ) and ( values_file == "" )) and ( helm_version == "v3" )
+  when: helm_version == "v3"
 
 - name: Helm install repos
   command: helm repo add {{ item.name }} {{ item.url }}
